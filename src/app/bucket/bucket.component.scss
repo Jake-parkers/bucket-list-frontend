@@ -211,6 +211,15 @@ button:focus {
   margin-bottom: 20px;
 }
 
+.bucket-header {
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-top: 15px;
+  font-weight: bolder;
+  letter-spacing: 1.1px;
+  cursor: pointer;
+}
+
 @media only screen and  (min-device-width: 320px)
 and (max-device-width: 640px) {
   header.menu .menu-item {

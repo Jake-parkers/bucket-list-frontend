@@ -56,12 +56,14 @@ export class HomeComponent implements OnInit {
   ) {}
 
   static transformBuckets(buckets: BucketModel[]) {
-    return buckets.map(bucket => {
-      if (bucket.items !== null && bucket.items.indexOf(null) !== -1) {
-        bucket.items = null;
-      }
-      return bucket;
-    });
+    if (buckets !== null) {
+      return buckets.map(bucket => {
+        if (bucket.items !== null && bucket.items.indexOf(null) !== -1) {
+          bucket.items = null;
+        }
+        return bucket;
+      });
+    }
   }
 
   ngOnInit() {
@@ -194,6 +196,7 @@ export class HomeComponent implements OnInit {
   }
 
   fetchAllBuckets() {
+    this.singleBucket = null;
     this.misc.showLoader();
     this.bucketService.getAll()
       .subscribe(response => {
@@ -235,6 +238,9 @@ export class HomeComponent implements OnInit {
     this.bucketService.create(this.searchForm.value)
       .subscribe(response => {
         const newBucket: NewBucket = response.message;
+        if (!this.buckets) {
+          this.buckets = [];
+        }
         // tslint:disable-next-line:max-line-length
         this.buckets.unshift(new BucketModel(newBucket.bucket_id, newBucket.name, newBucket.date_created, newBucket.date_modified, newBucket.items, newBucket.user_id));
         this.misc.removeLoader();
@@ -263,6 +269,12 @@ export class HomeComponent implements OnInit {
         this.results = result.message;
         this.buckets = this.results.data;
         this.buckets = HomeComponent.transformBuckets(this.buckets);
+        if (this.results.next_page_url !== null) {
+          this.loadMore = !this.loadMore;
+          this.nextPage = this.results.current_page + 1;
+        } else {
+          this.loadMore = !this.loadMore;
+        }
       }
       this.misc.removeLoader();
     }, error => {

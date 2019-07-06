@@ -20,8 +20,8 @@
             <input [formControl]="search" type="text" placeholder="Create or search for a bucket list">
           </form>
         </div>
-        <app-bucket *ngIf="singleBucket" [bucket]="singleBucket" class="col-12 col-md-12"></app-bucket>
-        <div *ngIf="!singleBucket" class="col-12 col-md-12">
+        <app-bucket *ngIf="singleBucket" (goBack)="fetchAllBuckets()" [bucket]="singleBucket" class="col-12 col-md-12"></app-bucket>
+        <div *ngIf="!singleBucket && buckets" class="col-12 col-md-12">
           <div class="row">
             <p *ngIf="buckets.length === 0" class="empty col-12 col-md-12">You don't have any bucket lists yet. Create one</p>
             <div class="bucketlist col-12 col-md-4" *ngFor="let bucket of buckets; let i = index">

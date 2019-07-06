@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, AbstractControl, Validators} from '@angular/forms';
 
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +14,7 @@ import { ItemService } from '../services/item.service';
 })
 export class BucketComponent implements OnInit {
   @Input() bucket: BucketModel;
+  @Output() goBack = new EventEmitter();
   updateItemForm: FormGroup;
   name: AbstractControl;
   done: AbstractControl;
@@ -28,10 +29,15 @@ export class BucketComponent implements OnInit {
   ngOnInit() {
     this.updateItemForm = this.fb.group({
       name: ['', Validators.compose([Validators.required, Validators.pattern(/[a-zA-Z0-9'-_]+/)])],
-      done: []
+      done: [false]
     });
     this.name = this.updateItemForm.controls.name;
     this.done = this.updateItemForm.controls.done;
+
+    this.done.valueChanges.subscribe(checked => {
+      const itemId = document.querySelector('.test').getAttribute('id');
+      this.updateItem(null, itemId);
+    });
   }
 
   toggleEdit(event) {
@@ -65,20 +71,23 @@ export class BucketComponent implements OnInit {
     return itemArray[0];
   }
 
-  updateItem(event) {
+  updateItem(event, id) {
     this.misc.showLoader();
-    const item = this.getItem(event.target.id);
+    const item = this.getItem(event === null ? id : event.target.id);
+    if (event === null) {
+      this.name.setValue(item.name);
+    }
     const originalItemName = item.name;
     item.name = this.name.value;
     this.itemService.update(this.updateItemForm.value, this.bucket.id, item.id)
       .subscribe(_ => {
         this.misc.removeLoader();
-        this.toggleEdit(event);
+        event === null ? console.log() : this.toggleEdit(event);
       }, error => {
         this.misc.removeLoader();
-        this.toggleEdit(event);
+        event === null ? console.log() : this.toggleEdit(event);
         item.name = originalItemName;
-        this.misc.showAlert('Ensure the name of the new item is unique.');
+        this.misc.showAlert(error.message);
       });
   }
 
@@ -93,6 +102,10 @@ export class BucketComponent implements OnInit {
         this.misc.removeLoader();
         this.misc.showAlert(error.message);
       });
+  }
+
+  back() {
+    this.goBack.emit('back');
   }
 
 }
