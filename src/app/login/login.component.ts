@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (this.auth.isAuthenticated()) {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/bucketlists');
     }
     this.loginForm = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern(emailRegexp)])],
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       .subscribe(response => {
         this.loggingIn = false;
         if (response.status === 'success') {
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/bucketlists');
         } else {
           this.misc.showAlert(response.message);
           this.router.navigateByUrl('/not-found');
