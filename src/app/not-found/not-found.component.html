@@ -1,3 +1,17 @@
-<p>
-  not-found works!
-</p>
+<main class="container-fluid">
+  <section class="row">
+    <header class="menu col-12 col-md-12">
+      <div class="row">
+        <div (click)="gotoDocs()" class="menu-item logo col-4 col-md-2">BUCKIT</div>
+        <div (click)="gotoHome()" class="menu-item col-4 col-md-2">Home</div>
+        <div class="d-none d-md-block col-3 col-md-6">
+            <input class="d-none d-md-block" type="text" placeholder="Create or search for a bucket list">
+        </div>
+        <div (click)="logout()" class="menu-item col-4 col-md-2">Logout</div>
+      </div>
+    </header>
+  </section>
+</main>
+<div class="container-fluid">
+  <header class="lost">404 | Not Found</header>
+</div>

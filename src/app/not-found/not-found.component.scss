@@ -1,0 +1,54 @@
+@import "../../palette";
+header.menu {
+  background-color: #484848;
+  padding: 12px;
+  color: $white;
+  position: sticky;
+  width: 100%;
+  //padding-bottom: 30px;
+}
+
+header.menu input {
+  background-color: $dark;
+  width: 100%;
+  line-height: 40px;
+  border-radius: $radius;
+  border: 1px solid $dark;
+  text-indent: 10px;
+  font-size: 14px;
+  letter-spacing: 1.1px;
+  color: $white;
+}
+
+header.menu input::placeholder {
+  color: $white;
+}
+
+header.menu input:focus {
+  outline: none;
+}
+
+header.menu .menu-item {
+  position: relative;
+  top: 10px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
+header.menu .logo {
+  font-weight: bolder;
+  font-size: 17px;
+  color: $accent;
+  cursor: pointer;
+}
+
+.lost {
+  color: $light-gray;
+  font-size: 20px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+}

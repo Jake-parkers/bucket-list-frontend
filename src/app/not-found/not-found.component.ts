@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router} from '@angular/router';
+import { AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-not-found',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
+  }
+
+  gotoDocs() {
+    this.router.navigateByUrl('/docs');
+  }
+
+  gotoHome() {
+    this.router.navigateByUrl('/bucketlists');
+  }
+
+  logout() {
+    this.auth.logout();
+    this.router.navigateByUrl('/login');
   }
 
 }
