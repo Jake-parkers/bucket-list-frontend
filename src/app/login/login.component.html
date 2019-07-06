@@ -1,0 +1,46 @@
+<div class="login-wrapper container">
+  <div class="slant"></div>
+  <div class="content row">
+    <header class="col-md-12 alt-header">Buckit Login</header>
+    <div class="col-xs-12 col-md-6 info">
+      <div class="info-wrapper row">
+        <header class="col-md-12">Buckit Login</header>
+          <div class="perk1 row" style="margin-top: 25px;">
+            <div class="col-md-2"><fa-icon [icon]="checkCircle" style="color: #ff9966; font-size: 18px;"></fa-icon></div>
+            <div class="col-md-10 main">Access Your Bucket Lists</div>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-md-6 form">
+      <div class="form-wrapper row">
+        <header style="text-align: center;margin-bottom: 20px;">Log In To Your Buckit Account</header>
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="col-xs-12 col-md-12">
+          <div class="form-field row">
+            <label  class="col-xs-12 col-md-12">* Email</label>
+            <input [formControl]="email" class="col-xs-12 col-md-12" type="email" placeholder="jdoe@gmail.com" required/>
+            <div class="error" *ngIf="email.dirty && email.hasError('required')">Your Email is required</div>
+            <div class="error" *ngIf="email.dirty && email.hasError('pattern')">Please enter a valid Email</div>
+          </div>
+          <div class="form-field row">
+            <label  class="col-xs-12 col-md-12">* Password</label>
+            <input [formControl]="password" class="col-xs-12 col-md-12" type="password" placeholder="jdoe" required/>
+            <div class="error" *ngIf="password.dirty && password.hasError('required')">Your Password is required</div>
+            <div class="error" *ngIf="password.dirty && password.hasError('minlength')">Your password should be at least 4 characters</div>
+          </div>
+          <div class="form-field row">
+            <button *ngIf="!loggingIn" [disabled]="loginForm.invalid" class="col-xs-12 col-md-12"> Access Buckets </button>
+            <button *ngIf="loggingIn" class="col-xs-12 col-md-12 logging-in" disabled> Logging In </button>
+          </div>
+          <div class="form-field row" style="font-size: 14px">
+            Don't have an account? -  <span class="link" (click)="gotoSignUp()"> Sign Up</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="custom-footer">
+  <div>&copy; 2019 Buckit Technologies Limited</div>
+</footer>

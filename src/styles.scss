@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import "palette";
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+.link {
+  cursor: pointer;
+  color: $dark-blue;
+  text-decoration: underline;
+}
+
+.error {
+  color: $danger;
+  font-size: 60%;
+}
+
+.hidden {
+  display: none;
+}
+
+.modall-content  {
+  position: relative;
+  /* transform: translateY(69%); */
+  top: 40vh;
+  text-align: -webkit-center;
+  text-align: -moz-center;
+}
+
+#overlay {
+  position: fixed;
+  top: 0px;
+  left:  0px;
+  z-index:  99;
+  background:  rgba(0,0,0,0.8);
+  width:  100%;
+  height: 100%;
+}

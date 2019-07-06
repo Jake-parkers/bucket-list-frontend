@@ -1,0 +1,221 @@
+@import "../../palette";
+.login-wrapper {
+  position: relative;
+  max-width: 100%;
+  margin-bottom: 100px;
+}
+
+.slant {
+  position: absolute;
+  background: $white;
+  height: 55vh;
+  max-height: 100vh;
+  width: 100%;
+  left: 0;
+  z-index: -1;
+}
+
+.slant::after {
+  content: '';
+  background: inherit;
+  height: inherit;
+  max-height: 100vh;
+  width: 100%;
+  bottom: -40%;
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: block;
+  transform: skewY(-11deg);
+}
+
+
+.content {
+  transform: translateY(30%)
+}
+
+.info {
+  text-align: center;
+}
+
+.info .info-wrapper {
+  width: 40%;
+  display: inline-block;
+  position: relative;
+  left: 15%;
+}
+
+.info .info-wrapper header{
+  font-weight: bolder;
+  color: $text-color;
+  font-size: 30px;
+}
+
+.info .info-wrapper .perk1 {
+  margin-bottom: 20px;
+}
+
+.info .info-wrapper .perk1 .main {
+  color: #3f3f3f;
+  font-weight: 900;
+  text-align: left;
+}
+
+.info .info-wrapper .perk1 .description {
+  margin-top: 5px;
+  color: #a0a0a0;
+  font-size: 12px;
+  font-weight: 100;
+  text-align: left;
+}
+
+.form {
+  margin-bottom: 50px;
+}
+
+.form .form-wrapper {
+  background: #ffffff;
+  width: 60%;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 7px 11px 0 #fbf2f0;
+  /* text-align: left; */
+}
+
+.form .form-wrapper header{
+  text-align: left;
+  font-weight: bolder;
+}
+
+
+.form .form-wrapper input {
+  line-height: 40px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  border: 1px solid #a7a6a6;
+  font-size: 13px;
+  color: #646464;
+}
+
+.form .form-wrapper input::placeholder {
+  font-size: 13px;
+}
+
+.form .form-wrapper .form-field {
+  margin-top: 10px;
+}
+
+.form .form-wrapper .form-field label {
+  left: -15px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3f3f3f;
+}
+
+.form .form-wrapper form button {
+  background: $accent;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  color: #ffffff;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form .form-wrapper form button.logging-in {
+  background: transparent;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  color: $accent;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.form .form-wrapper form button:hover {
+  background: transparent;
+  border: 1px solid $accent;
+  color: $accent;
+  font-weight: 700;
+}
+
+.form .form-wrapper form button.logging-in:hover {
+  background: transparent;
+  border: none;
+  color: $dark-blue;
+  font-weight: 700;
+}
+
+.alt-header { display: none}
+
+.custom-footer {
+  background: transparent;
+  text-align: center;
+  color: $text-color;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  margin-top: 100px;
+}
+
+@media only screen and  (min-device-width: 320px)
+and (max-device-width: 640px) {
+  .content {
+    transform: translateY(0);
+  }
+  .alt-header {
+    display: block;
+    font-weight: bolder;
+    color: #4a77a6;
+    font-size: 20px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+  }
+  .info {
+    display: none;
+  }
+  .form {
+    margin: 0 auto;
+    margin-bottom: 50px;
+  }
+  .form .form-wrapper {
+    background: #ffffff;
+    width: 100%;
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    left: 4%;
+    box-shadow: 0 5px 10px 0 #a3a3a3;
+    /* text-align: left; */
+  }
+}
+
+@media only screen and  (min-device-width: 576px)
+and (max-device-width: 768px) {
+  .content {
+    transform: translateY(50%);
+  }
+  .info {
+    display: none;
+  }
+  .form {
+    margin: 0 auto;
+    margin-bottom: 50px;
+  }
+  .form .form-wrapper {
+    background: #ffffff;
+    width: 100%;
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    /* left: 30%; */
+    box-shadow: 0 5px 10px 0 #a3a3a3;
+    /* text-align: left; */
+  }
+}

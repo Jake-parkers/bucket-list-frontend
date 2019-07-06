@@ -1,0 +1,104 @@
+<main class="container-fluid">
+  <section class="row">
+    <header class="menu col-12 col-md-12">
+      <div class="row">
+        <div (click)="gotoDocs()" class="menu-item logo col-4 col-md-2">BUCKIT</div>
+        <div (click)="goHome()" class="menu-item col-4 col-md-2">Home</div>
+        <div class="d-none d-md-block col-3 col-md-6">
+          <form [formGroup]="searchForm">
+            <input [formControl]="search" class="d-none d-md-block" type="text" placeholder="Create or search for a bucket list">
+          </form>
+        </div>
+        <div (click)="logout()" class="menu-item col-4 col-md-2">Logout</div>
+      </div>
+    </header>
+
+    <div class="main-content col-12 col-md-12">
+      <div class="row">
+        <div class="xs-input d-block d-md-none d-lg-none col-12">
+          <form [formGroup]="searchForm">
+            <input [formControl]="search" type="text" placeholder="Create or search for a bucket list">
+          </form>
+        </div>
+        <app-bucket *ngIf="singleBucket" [bucket]="singleBucket" class="col-12 col-md-12"></app-bucket>
+        <div *ngIf="!singleBucket" class="col-12 col-md-12">
+          <div class="row">
+            <p *ngIf="buckets.length === 0" class="empty col-12 col-md-12">You don't have any bucket lists yet. Create one</p>
+            <div class="bucketlist col-12 col-md-4" *ngFor="let bucket of buckets; let i = index">
+              <div class="bucket row">
+                <div class="heading col-12 col-md-12">
+                  <div id="bucket_{{bucket.id}}" class="row">
+                    <div class="bucket-name col-6 col-md-6">{{bucket.name}}</div>
+                    <div class="bucket-edit actions col-3 col-md-3">
+                      <div class="row">
+                        <div class="col-12 col-md-12"><fa-icon class="actions" [icon]="pencil"></fa-icon></div>
+                        <div class="col-12 col-md-12" id="{{i}}" (click)="editBucket($event)" style="font-size: 12px">Edit</div>
+                      </div>
+                    </div>
+                    <div class="bucket-delete actions col-3 col-md-3">
+                      <div class="row">
+                        <div class="col-12 col-md-12"><fa-icon class="actions" style="color:#ff9966" [icon]="bin"></fa-icon></div>
+                        <div class="col-12 col-md-12" id="{{i}}" (click)="deleteBucket($event)" style="font-size: 12px">Delete</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--              {{buckets[i].id}} {{bucket.id}}-->
+                  <div id="edit_{{bucket.id}}" class="hidden row">
+                    <form [formGroup]="updateBucketForm" id="{{i}}" (ngSubmit)="updateBucket($event)" class="col-12 col-md-12">
+                      <div class="row">
+                        <div class="input-field col-5 col-md-5">
+                          <input [formControl]="bucketName" type="text" value="{{bucket.name}}" id=bucket_name onfocus="this.select()">
+                          <div class="error" *ngIf="bucketName.dirty && bucketName.hasError('required')">Bucket Name is required</div>
+                          <div class="error" *ngIf="bucketName.dirty && bucketName.hasError('pattern')">Please enter a valid Bucket Name</div>
+                        </div>
+                        <div class="input-field col-4 col-md-4">
+                          <button [disabled]="updateBucketForm.invalid">Update</button>
+                        </div>
+                        <div id="{{i}}" (click)="toggleEdit($event)" class="cancel col-3 col-md-3">
+                          Cancel
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="content col-12 col-md-12">
+                  <div class="row">
+                    <div class="item-count col-6 col-md-6">You have {{bucket.items !== null ? bucket.items.length : 0}} Item(s) in this bucket</div>
+                    <div class="view col-6 col-md-6" *ngIf="bucket.items !== null" id="{{i}}" (click)="openBucket($event)">View Items</div>
+
+                    <div id="item_info_{{bucket.id}}" class="add-item col-12 col-md-12">
+                      <fa-icon [icon]="add"></fa-icon>
+                      <div id="{{i}}" (click)="addNewItem($event)"> Add Item </div>
+                    </div>
+
+                    <form id="item_form_{{bucket.id}}" [formGroup]="addItemForm" (ngSubmit)="addItemToBucket($event)" class="hidden col-12 col-md-12">
+                      <div class="row">
+                        <div class="input-field col-6 col-md-7">
+                          <input [formControl]="itemName" type="text" value="" placeholder="Item Name">
+                          <div class="error" *ngIf="itemName.dirty && itemName.hasError('required')">Item Name is required</div>
+                          <div class="error" *ngIf="itemName.dirty && itemName.hasError('pattern')">Please enter a valid Item Name</div>
+                        </div>
+                        <div class="input-field col-6 col-md-5">
+                          <input [formControl]="done" type="checkbox" value="" placeholder="Item Name"> Done
+                        </div>
+                        <div class="input-field col-4 col-md-4">
+                          <button [disabled]="addItemForm.invalid">Add Item</button>
+                          <span id="{{i}}" (click)="toggleAddItem($event)" class="cancel col-3 col-md-3">
+                      Cancel
+                    </span>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="loadMore" (click)="loadMoreBuckets(nextPage)" class="col-12 col-md-12 load-more">
+              Load More
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

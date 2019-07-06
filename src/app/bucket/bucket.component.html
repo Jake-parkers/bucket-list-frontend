@@ -1,0 +1,53 @@
+<div class="col-12 col-md-12">
+  <div class="row">
+  <div class="bucketlist col-12 col-md-4" *ngFor="let item of bucket.items let i = index">
+        <div class="bucket row">
+          <div class="heading col-12 col-md-12">
+            <div id="item_{{item.id}}" class="row">
+              <div class="bucket-name col-6 col-md-6">{{item.name}}</div>
+              <div class="bucket-edit actions col-3 col-md-3">
+                <div class="row">
+                  <div class="col-12 col-md-12"><fa-icon class="actions" [icon]="pencil"></fa-icon></div>
+                  <div class="col-12 col-md-12" id="{{item.id}}" (click)="editItem($event)" style="font-size: 12px">Edit</div>
+                </div>
+              </div>
+              <div class="bucket-delete actions col-3 col-md-3">
+                <div class="row">
+                  <div class="col-12 col-md-12"><fa-icon class="actions" style="color:#ff9966" [icon]="bin"></fa-icon></div>
+                  <div class="col-12 col-md-12" id="{{item.id}}" (click)="deleteItem($event)" style="font-size: 12px">Delete</div>
+                </div>
+              </div>
+            </div>
+            <!--              {{buckets[i].id}} {{bucket.id}}-->
+            <div id="edit_{{item.id}}" class="hidden row">
+              <form [formGroup]="updateItemForm" id="{{item.id}}" (ngSubmit)="updateItem($event)" class="col-12 col-md-12">
+                <div class="row">
+                  <div class="input-field col-5 col-md-5">
+                    <input [formControl]="name" type="text" value="{{item.name}}" id=item_name onfocus="this.select()">
+                    <div class="error" *ngIf="name.dirty && name.hasError('required')">Item Name is required</div>
+                    <div class="error" *ngIf="name.dirty && name.hasError('pattern')">Please enter a valid Item Name</div>
+                  </div>
+                  <div class="input-field col-4 col-md-4">
+                    <button [disabled]="updateItemForm.invalid">Update</button>
+                  </div>
+                  <div id="{{item.id}}" (click)="toggleEdit($event)" class="cancel col-3 col-md-3">
+                    Cancel
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="content col-12 col-md-12">
+            <div class="row">
+              <div class="input-field done-input col-12 col-md-12">
+                <input *ngIf="item.done === true" [formControl]="done" type="checkbox" checked> <span style="position: relative; left: 15px; top: 2px;" *ngIf="item.done === true">Done</span>
+                <input *ngIf="item.done === false" [formControl]="done" type="checkbox"> <span style="position: relative; left: 15px; top: 2px;" *ngIf="item.done === false">Done</span>
+              </div>
+              <!--                <input type="checkbox"> Done-->
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+

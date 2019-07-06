@@ -1,0 +1,259 @@
+@import "../../palette";
+header.menu {
+  background-color: #484848;
+  padding: 12px;
+  color: $white;
+  position: sticky;
+  width: 100%;
+}
+
+header.menu input {
+  background-color: $dark;
+  width: 100%;
+  line-height: 40px;
+  border-radius: $radius;
+  border: 1px solid $dark;
+  text-indent: 10px;
+  font-size: 14px;
+  letter-spacing: 1.1px;
+  color: $white;
+}
+
+header.menu input::placeholder {
+  color: $white;
+}
+
+header.menu input:focus {
+  outline: none;
+}
+
+header.menu .menu-item {
+  position: relative;
+  top: 10px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
+header.menu .logo {
+  font-weight: bolder;
+  font-size: 17px;
+  color: $accent;
+  cursor: pointer;
+}
+
+.main-content {
+  position: relative;
+  padding: 0 100px 0 100px;
+  color: $light-gray;
+}
+
+.main-content .empty {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 20px;
+}
+
+.bucketlist {
+  margin-top: 30px;
+}
+
+.bucket {
+  background-color: #484848;
+  border-radius: $radius;
+  letter-spacing: 1.1px;
+  width: 100%;
+}
+
+.bucket .heading {
+  background-color: $dark;
+  padding: 10px 10px 10px 10px;
+  border-radius: $radius;
+}
+
+.bucket .heading .actions {
+  cursor: pointer;
+}
+
+.bucket .heading .bucket-edit {
+  text-align: right;
+}
+
+.bucket .heading form .input-field input {
+  background: transparent;
+  border: none;
+  color: $white;
+  font-size: 13px;
+  letter-spacing: 1.1px;
+}
+
+.bucket .heading form .cancel {
+  font-size: 13px;
+  position: relative;
+  top: 3px;
+  cursor: pointer;
+}
+
+.bucket .heading form .input-field input:focus {
+  outline: none;
+}
+
+.bucket .heading form .input-field button {
+  font-size: 12px;
+  padding: 3px;
+  border-radius: 3px;
+  background: $accent;
+  border: 1px solid $accent;
+  color: $light-gray;
+  letter-spacing: 1.1px;
+  width: 100%;
+}
+
+.bucket .content {
+  margin-top: 10px;
+}
+
+.bucket .content .item-count {
+  font-size: 12px;
+}
+
+.bucket .content .view {
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.bucket .content .add-item {
+  text-align: center;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.bucket .content .add-item fa-icon {
+  font-size: 50px;
+}
+
+.bucket .content form .input-field input {
+  background: $dark;
+  border: 1px solid $dark;
+  color: $white;
+  border-radius: $radius;
+  letter-spacing: 1.1px;
+  font-size: 13px;
+  text-indent: 3px;
+}
+
+.bucket .content form .input-field input[type='text'] {
+  width: 100%;
+  line-height: 25px;
+}
+
+.bucket .content form .cancel {
+  font-size: 13px;
+  position: relative;
+  top: 3px;
+  cursor: pointer;
+}
+
+.bucket .content form .input-field input::placeholder {
+  color: $text-color;
+  font-size: 13px;
+}
+
+.bucket .content form .input-field input:focus {
+  outline: none;
+}
+
+.bucket .content form .input-field {
+  margin: 15px auto;
+}
+
+button:focus {
+  outline: none;
+}
+
+.bucket .content form .input-field button {
+  font-size: 12px;
+  padding: 3px;
+  border-radius: 3px;
+  background: $accent;
+  border: 1px solid $accent;
+  color: $light-gray;
+  letter-spacing: 1.1px;
+  width: 100%;
+}
+
+.load-more {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+  background: $dark;
+  padding: 10px;
+  border-radius: $radius;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.done-input {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+@media only screen and  (min-device-width: 320px)
+and (max-device-width: 640px) {
+  header.menu .menu-item {
+    position: relative;
+    top: 2px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  header.menu .menu-item:nth-child(2) {
+    text-align: left;
+  }
+
+  .main-content {
+    position: relative;
+    top: -5px;
+    padding: 0;
+    //z-index: -1;
+  }
+
+  .main-content .xs-input input{
+    background-color: $dark;
+    width: 100%;
+    line-height: 40px;
+    border-radius: $radius;
+    border: 1px solid $dark;
+    text-indent: 10px;
+    font-size: 14px;
+    letter-spacing: 1.1px;
+    color: $white;
+  }
+
+  .main-content .xs-input input::placeholder {
+    color: $white;
+  }
+
+  .main-content .xs-input input:focus {
+    outline: none;
+  }
+
+  .bucket {
+    background-color: #484848;
+    border-radius: 3px;
+    letter-spacing: 1.1px;
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
